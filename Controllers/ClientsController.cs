@@ -7,7 +7,6 @@ using pg_api;
 
 namespace pg_api.Controllers
 {
-
     [ApiController]
     [Route("api/[controller]")]
     public class ClientsController : ControllerBase
@@ -19,10 +18,25 @@ namespace pg_api.Controllers
             _context = context;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Clients>>> GetClients()
+        // Segun parametros pageNumber y pageSize retorna data (por el momento fijos)
+        [HttpGet("Clients")]
+        public async Task<ActionResult<IEnumerable<Clients>>> GetClients(int pageNumber = 1, int pageSize = 10)
         {
-            return await _context.Clients.ToListAsync();
+            var clients = await _context.Clients
+                .Skip((pageNumber - 1) * pageSize) // salta a la cantidad de elementos necesaria
+                .Take(pageSize)  //Obtiene la pagina
+                .ToListAsync(); // lista los resultados 
+            return clients;
+        }
+
+        [HttpGet("clientspaged")]
+        public async Task<ActionResult<IEnumerable<Clients>>> GetClientsSP(int pageNumber = 1, int pageSize = 10)
+        {
+            var sql = $"EXEC GetClientsPaged {pageNumber}, {pageSize}";
+
+            var clients = await _context.Clients.FromSqlRaw(sql).ToListAsync(); // ejecutamos la sentencia SQL 
+
+            return clients;
         }
 
     }
