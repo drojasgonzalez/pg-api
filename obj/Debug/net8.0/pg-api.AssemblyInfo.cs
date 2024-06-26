@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("pg-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd04e92b896169cde3ca7c0a9d4e25b0c35b2055")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+df19404942d87248309cb52b10cee73cab75faeb")]
 [assembly: System.Reflection.AssemblyProductAttribute("pg-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("pg-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
